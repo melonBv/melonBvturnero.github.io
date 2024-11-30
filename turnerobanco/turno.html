@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turno Generado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #b30000;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .turno-info {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            background-color: #ffe6e6;
+            border-radius: 5px;
+        }
+        .nav-button {
+            margin-top: 50px;
+            text-decoration: none;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .nav-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Turno Generado</h1>
+        <div id="turnoInfo" class="turno-info"></div>
+    </div>
+
+    <script>
+       
+        function obtenerSiguienteTurno() {
+            let turnoGlobalCount = localStorage.getItem('turnoGlobalCount');
+
+            
+            if (!turnoGlobalCount) {
+                turnoGlobalCount = 0;
+            } else {
+                turnoGlobalCount = parseInt(turnoGlobalCount);
+            }
+
+            
+            turnoGlobalCount++;
+
+            
+            localStorage.setItem('turnoGlobalCount', turnoGlobalCount);
+
+            return turnoGlobalCount;
+        }
+
+        
+        const urlParams = new URLSearchParams(window.location.search);
+       
+        const tramite = urlParams.get('tramite');
+        const preferencia = urlParams.get('preferencia');
+        const nombre = urlParams.get('nombre');
+        const telefono = urlParams.get('telefono');
+
+        
+        const prefijo = preferencia === "VIP" ? "VIP" : tramite.charAt(0).toUpperCase();
+        const turnoGlobalCount = obtenerSiguienteTurno();
+        const referencia = `${prefijo}${turnoGlobalCount}`;
+
+       
+        const turnoInfo = document.getElementById('turnoInfo');
+        turnoInfo.innerHTML = `
+            <h2>Turno: ${referencia}</h2>
+            <p><strong>Nombre:</strong> ${nombre}</p>
+            <p><strong>Trámite:</strong> ${tramite}</p>
+            <p><strong>Preferencia:</strong> ${preferencia}</p>
+            <p><strong>Teléfono:</strong> ${telefono}</p>
+        `;
+    
+    </script>
+<center><h2>Espere su llamada...</h2></center>
+    <center><a href="index.php" class="nav-button">Volver a la Página Principal</a></center>
+</body>
+</html>
+

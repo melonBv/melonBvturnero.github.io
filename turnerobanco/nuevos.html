@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Nuevos Clientes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 100;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 500px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #b30000;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #b30000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #990000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Registro de Nuevos Clientes</h1>
+        <form action="registrar_cliente.php" method="POST">
+
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="apellido_paterno">Apellidos:</label>
+            <input type="text" id="apellido_paterno" name="apellido_paterno" required>
+
+            <label for="nacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="nacimiento" name="nacimiento" required>
+
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required>
+
+            <label for="sueldo_mensual">Ingreso Mensual:</label>
+            <input type="number" id="sueldo_mensual" name="sueldo_mensual" required min="0" step="0.01">
+
+            <label for="ingresos">Fuente de Ingresos:</label>
+            <input type="text" id="ingresos" name="ingresos" required>
+
+            <label for="gmail">Gmail:</label>
+            <input type="email" id="gmail" name="gmail" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required pattern="[0-9]{10}" title="Introduce un número de teléfono válido de 10 dígitos.">
+
+            <button type="submit">Registrar Cliente</button>
+        </form>
+    </div>
+
+</body>
+</html>
